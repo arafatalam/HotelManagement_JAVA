@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!-- Use shared head fragment and pass the pageTitle -->
+<head th:replace="shared/_header :: head(${pageTitle})"></head>
+
+<body>
+<!-- Insert navbar from shared header -->
+<div th:replace="shared/_header :: navbar"></div>
+
+<main class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="hero-card card border-0">
+                <div class="card-body p-5">
+                    <h1 class="display-5 mb-3" th:text="${welcomeMessage}">
+                        Welcome to NBCC Hotel Management
+                    </h1>
+                    <p class="lead text-muted mb-4">
+                        Manage room types, rooms and bookings in a polished, modern interface.
+                        In Phase 1, we’ll focus on managing hotel rooms and a simple login.
+                    </p>
+
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <a th:href="@{/roomtypes}" class="btn btn-primary w-100 btn-lg">
+                                Manage Room Types
+                            </a>
+                        </div>
+                        <div class="col-md-6">
+                            <a th:href="@{/rooms}" class="btn btn-outline-primary w-100 btn-lg">
+                                Manage Rooms
+                            </a>
+                        </div>
+                    </div>
+
+                    <hr class="my-4"/>
+
+                    <p class="mb-0 text-muted small">
+                        You are currently viewing a simple home page. In the next steps,
+                        we will connect this UI to real database entities using
+                        Spring Data JPA and services.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Shared footer fragment -->
+<div th:replace="shared/_footer :: footer"></div>
+</body>
+</html>
