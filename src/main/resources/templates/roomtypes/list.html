@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!-- Use shared head fragment, passing pageTitle -->
+<head th:replace="~{shared/_header :: head(${pageTitle})}"></head>
+
+<body>
+<!-- Top navigation bar -->
+<div th:replace="~{shared/_header :: navbar}"></div>
+
+<main class="container my-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h1 class="h3 mb-1">Room Types</h1>
+            <p class="text-muted mb-0">
+                View all room types currently available in the hotel.
+            </p>
+        </div>
+        <!-- Create/edit/delete buttons will be added later -->
+        <a th:href="@{/roomtypes/create}" class="btn btn-primary">
+            + Create Room Type
+        </a>
+    </div>
+
+    <!-- If there are no room types -->
+    <div th:if="${#lists.isEmpty(roomTypes)}" class="alert alert-info">
+        No room types found. Please insert some sample data in the database.
+    </div>
+
+    <!-- If there are room types, show table -->
+    <div th:if="${!#lists.isEmpty(roomTypes)}" class="card hero-card border-0">
+        <div class="card-body p-4">
+            <div class="table-responsive">
+                <table class="table align-middle mb-0">
+                    <thead class="table-light">
+                    <tr>
+                        <th style="width: 10%">ID</th>
+                        <th style="width: 25%">Name</th>
+                        <th>Description</th>
+                        <th style="width: 20%">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!-- Loop over each RoomType in the list -->
+                    <tr th:each="roomType : ${roomTypes}">
+                        <td th:text="${roomType.roomTypeId}"></td>
+                        <td th:text="${roomType.roomTypeName}"></td>
+                        <td th:text="${roomType.roomTypeDescription}"></td>
+                        <td>
+                            <div class="d-flex gap-2">
+                                <!-- Edit button -->
+                                <a th:href="@{/roomtypes/edit/{id}(id=${roomType.roomTypeId})}"
+                                   class="btn btn-sm btn-outline-primary">
+                                    Edit
+                                </a>
+
+                                <!-- Delete button with JS confirm -->
+                                <a th:href="@{/roomtypes/delete/{id}(id=${roomType.roomTypeId})}"
+                                   class="btn btn-sm btn-outline-danger"
+                                   onclick="return confirm('Are you sure you want to delete this room type?');">
+                                    Delete
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Footer -->
+<div th:replace="~{shared/_footer :: footer}"></div>
+</body>
+</html>

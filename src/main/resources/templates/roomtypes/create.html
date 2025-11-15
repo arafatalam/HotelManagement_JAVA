@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!-- Use shared head fragment -->
+<head th:replace="shared/_header :: head(${pageTitle})"></head>
+
+<body>
+<!-- Navbar -->
+<div th:replace="shared/_header :: navbar"></div>
+
+<main class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-7">
+            <div class="hero-card card border-0">
+                <div class="card-body p-4 p-md-5">
+
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <div>
+                            <h1 class="h3 mb-1">Create Room Type</h1>
+                            <p class="text-muted mb-0">
+                                Add a new category of rooms to your hotel.
+                            </p>
+                        </div>
+                        <a th:href="@{/roomtypes}" class="btn btn-outline-secondary btn-sm">
+                            &larr; Back to List
+                        </a>
+                    </div>
+
+                    <!-- FORM -->
+                    <form th:action="@{/roomtypes/create}"
+                          th:object="${roomType}"
+                          method="post">
+
+                        <!-- Name field -->
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name</label>
+                            <!--
+                              th:field="*{name}" binds this input to roomType.name
+                              (* means "inside the current object", which is roomType)
+                            -->
+                            <input type="text"
+                                   id="name"
+                                   th:field="*{roomTypeName}"
+                                   class="form-control"
+                                   placeholder="e.g., Deluxe, Standard, Suite" />
+                        </div>
+
+                        <!-- Description field -->
+                        <div class="mb-4">
+                            <label for="description" class="form-label">Description</label>
+                            <textarea id="description"
+                                      th:field="*{roomTypeDescription}"
+                                      class="form-control"
+                                      rows="3"
+                                      placeholder="Short description of this room type"></textarea>
+                        </div>
+
+                        <div class="d-flex justify-content-end gap-2">
+                            <a th:href="@{/roomtypes}" class="btn btn-outline-secondary">
+                                Cancel
+                            </a>
+                            <button type="submit" class="btn btn-primary">
+                                Save Room Type
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Footer -->
+<div th:replace="shared/_footer :: footer"></div>
+</body>
+</html>
