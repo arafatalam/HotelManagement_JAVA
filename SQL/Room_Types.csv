@@ -1,0 +1,40 @@
+room_type_id,room_type_description,room_type_name
+1,"Basic room with a queen bed",Standard
+2,"Room with two twin beds","Standard Twin"
+3,"Room with two double beds","Standard Double"
+4,"Larger room with a king bed and workspace",Deluxe
+5,"Deluxe category with two twin beds","Deluxe Twin"
+6,"Upgraded room with better amenities and view","Superior Room"
+7,"Higher-end room with premium bedding and features","Premier Room"
+8,"Spacious suite with bedroom and living area",Suite
+9,"Smaller suite with partial living area","Junior Suite"
+10,"Large suite with separate living, work, and sleeping areas","Executive Suite"
+11,"Room suitable for families with multiple beds","Family Room"
+12,"Two rooms with an interior connecting door","Connecting Room"
+13,"Room equipped for guests with disabilities","Accessible Room"
+14,"Open-concept room with bed and sitting area","Studio Room"
+15,"Top-floor luxury suite with premium amenities","Penthouse Suite"
+16,"Romantic suite designed for couples","Honeymoon Suite"
+17,"High-end suite with luxury furnishings","Luxury Suite"
+18,"Largest suite with exclusive premium amenities","Presidential Suite"
+19,"Room optimized for business travelers with workspace","Business Room"
+20,"Room suitable for one person","Single Room"
+21,"Room suitable for two people","Double Room"
+22,"Room suitable for three guests","Triple Room"
+23,"Room suitable for four guests","Quad Room"
+24,"Standalone villa with private entrance",Villa
+25,"Low-rise accommodation with porch or veranda",Bungalow
+26,"Private standalone small house-style accommodation",Cottage
+27,"Room with elevated sleeping area","Loft Room"
+28,"Room with direct view of the ocean","Ocean View Room"
+29,"Room with view of the city skyline","City View Room"
+30,"Room with view of garden or courtyard","Garden View Room"
+31,"Room located near the swimming pool","Poolside Room"
+32,"Room located on upper floors","High Floor Room"
+33,"Room located on lower floors","Low Floor Room"
+34,"Room with a private balcony","Balcony Room"
+35,"Room with large private terrace","Terrace Room"
+36,"Room where smoking is permitted","Smoking Room"
+37,"Room where smoking is not allowed","Non-Smoking Room"
+38,"Room suitable for guests with pets","Pet-Friendly Room"
+39,"Environmentally optimized room with green features","Eco Room"

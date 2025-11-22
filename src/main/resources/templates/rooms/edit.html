@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{shared/_header :: head(${pageTitle})}"></head>
+<body>
+<div th:replace="~{shared/_header :: navbar}"></div>
+
+<main class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="hero-card card border-0 shadow-sm">
+                <div class="card-body p-4 p-md-5">
+
+                    <!-- Header -->
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <div>
+                            <h1 class="h3 mb-1">Edit Room</h1>
+                            <p class="text-muted mb-0">
+                                Update the details for this room.
+                            </p>
+                        </div>
+                        <a th:href="@{/rooms}" class="btn btn-outline-secondary btn-sm">
+                            &larr; Back to Rooms
+                        </a>
+                    </div>
+
+                    <!-- FORM -->
+                    <form th:action="@{|/rooms/edit/${room.roomId}|}"
+                          th:object="${room}"
+                          method="post">
+
+                        <!-- Room number & floor -->
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="roomNumber" class="form-label">Room Number</label>
+                                <input type="text"
+                                       id="roomNumber"
+                                       th:field="*{roomNumber}"
+                                       class="form-control" />
+                            </div>
+                            <div class="col-md-6">
+                                <label for="roomFloor" class="form-label">Floor</label>
+                                <input type="number"
+                                       id="roomFloor"
+                                       th:field="*{roomFloor}"
+                                       class="form-control" />
+                            </div>
+                        </div>
+
+                        <!-- Room type & status -->
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="roomType" class="form-label">Room Type</label>
+                                <select id="roomType"
+                                        th:field="*{roomType}"
+                                        class="form-select">
+                                    <option value="">-- Select Room Type --</option>
+                                    <option th:each="rt : ${roomTypes}"
+                                            th:value="${rt.roomTypeId}"
+                                            th:text="${rt.roomTypeName}">
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="roomStatus" class="form-label">Status</label>
+                                <select id="roomStatus"
+                                        th:field="*{roomStatus}"
+                                        class="form-select">
+                                    <option value="">-- Select Status --</option>
+                                    <option th:each="status : ${roomStatuses}"
+                                            th:value="${status}"
+                                            th:text="${status}">
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Price & capacity -->
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="roomPricePerNight" class="form-label">Price per Night ($)</label>
+                                <input type="number"
+                                       step="0.01"
+                                       id="roomPricePerNight"
+                                       th:field="*{roomPricePerNight}"
+                                       class="form-control" />
+                            </div>
+                            <div class="col-md-6">
+                                <label for="roomCapacity" class="form-label">Capacity (guests)</label>
+                                <input type="number"
+                                       id="roomCapacity"
+                                       th:field="*{roomCapacity}"
+                                       class="form-control" />
+                            </div>
+                        </div>
+
+                        <!-- Bed info -->
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="roomBedCount" class="form-label">Number of Beds</label>
+                                <input type="number"
+                                       id="roomBedCount"
+                                       th:field="*{roomBedCount}"
+                                       class="form-control" />
+                            </div>
+                            <div class="col-md-6">
+                                <label for="roomBedType" class="form-label">Bed Type</label>
+                                <select id="roomBedType"
+                                        th:field="*{roomBedType}"
+                                        class="form-select">
+                                    <option value="">-- Select Bed Type --</option>
+                                    <option th:each="bt : ${bedTypes}"
+                                            th:value="${bt}"
+                                            th:text="${bt}">
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Features (checkboxes) -->
+                        <div class="mb-3">
+                            <label class="form-label d-block">Features</label>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input"
+                                       type="checkbox"
+                                       id="roomHasAC"
+                                       th:field="*{roomHasAC}" />
+                                <label class="form-check-label" for="roomHasAC">Air Conditioning</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input"
+                                       type="checkbox"
+                                       id="roomHasWifi"
+                                       th:field="*{roomHasWifi}" />
+                                <label class="form-check-label" for="roomHasWifi">Wi-Fi</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input"
+                                       type="checkbox"
+                                       id="roomHasTV"
+                                       th:field="*{roomHasTV}" />
+                                <label class="form-check-label" for="roomHasTV">TV</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input"
+                                       type="checkbox"
+                                       id="roomSmokingAllowed"
+                                       th:field="*{roomSmokingAllowed}" />
+                                <label class="form-check-label" for="roomSmokingAllowed">Smoking Allowed</label>
+                            </div>
+                        </div>
+
+                        <!-- Dates -->
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="roomLastCleanedDate" class="form-label">Last Cleaned Date</label>
+                                <input type="date"
+                                       id="roomLastCleanedDate"
+                                       th:field="*{roomLastCleanedDate}"
+                                       class="form-control" />
+                            </div>
+                            <div class="col-md-6">
+                                <label for="roomNextMaintenanceDate" class="form-label">Next Maintenance Date</label>
+                                <input type="date"
+                                       id="roomNextMaintenanceDate"
+                                       th:field="*{roomNextMaintenanceDate}"
+                                       class="form-control" />
+                            </div>
+                        </div>
+
+                        <!-- Notes -->
+                        <div class="mb-4">
+                            <label for="roomNotes" class="form-label">Notes</label>
+                            <textarea id="roomNotes"
+                                      th:field="*{roomNotes}"
+                                      class="form-control"
+                                      rows="3"></textarea>
+                        </div>
+
+                        <!-- Buttons -->
+                        <div class="d-flex justify-content-end gap-2">
+                            <a th:href="@{/rooms}" class="btn btn-outline-secondary">
+                                Cancel
+                            </a>
+                            <button type="submit" class="btn btn-primary">
+                                Save Changes
+                            </button>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<div th:replace="~{shared/_footer :: footer}"></div>
+</body>
+</html>
