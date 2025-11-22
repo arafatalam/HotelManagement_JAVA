@@ -35,35 +35,64 @@
 </head>
 
 <div th:fragment="navbar">
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
-    <div class="container">
-        <a class="navbar-brand" th:href="@{/}">
-            NBCC Hotel
-        </a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+        <div class="container">
+            <a class="navbar-brand" th:href="@{/}">
+                Hotel Management
+            </a>
 
-        <button class="navbar-toggler" type="button"
-                data-bs-toggle="collapse" data-bs-target="#mainNavbar"
-                aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+            <button class="navbar-toggler" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#mainNavbar"
+                    aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-        <div class="collapse navbar-collapse" id="mainNavbar">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link active" th:href="@{/}">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{/roomtypes}">Room Types</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{/rooms}">Rooms</a>
-                </li>
-                <!-- Login link will be wired up later -->
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{/login}">Login</a>
-                </li>
-            </ul>
+            <div class="collapse navbar-collapse" id="mainNavbar">
+
+                <!-- RIGHT SIDE NAV -->
+                <ul class="navbar-nav ms-auto">
+
+                    <!-- BEFORE LOGIN -->
+                    <li class="nav-item"
+                        th:if="${session.userId == null}">
+                        <a class="nav-link" th:href="@{/login}">Login</a>
+                    </li>
+
+                    <li class="nav-item"
+                        th:if="${session.userId == null}">
+                        <a class="nav-link" th:href="@{/register}">Register</a>
+                    </li>
+
+
+                    <!-- AFTER LOGIN -->
+                    <li class="nav-item"
+                        th:if="${session.userId != null}">
+                        <a class="nav-link" th:href="@{/roomtypes}">Room Types</a>
+                    </li>
+
+                    <li class="nav-item"
+                        th:if="${session.userId != null}">
+                        <a class="nav-link" th:href="@{/rooms}">Rooms</a>
+                    </li>
+
+                    <!-- Show username -->
+                    <li class="nav-item d-flex align-items-center"
+                        th:if="${session.userId != null}">
+                    <span class="navbar-text me-2 text-info">
+                        👤 <span th:text="${session.username}">User</span>
+                    </span>
+                    </li>
+
+                    <!-- Logout -->
+                    <li class="nav-item"
+                        th:if="${session.userId != null}">
+                        <a class="nav-link text-warning" th:href="@{/logout}">
+                            Logout
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
 </div>
+
